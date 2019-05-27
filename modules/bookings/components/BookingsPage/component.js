@@ -24,12 +24,24 @@ export class Component extends React.PureComponent {
     if (this.props.hasFailed || !this.props.data) return 'Failed :(';
 
     return (
-      <>
+      <main className={styles.Main}>
         <BookingList list={this.props.data} />
-        <h1 className={styles.Title}>Welcome!</h1>
-        <CalendarLogo />
-        {this.props.data.map(booking => booking.guestName)}
-      </>
+        <section className={styles.BookingInfo}>
+          <CalendarLogo />
+          <h2 className={styles.BookingInfoTitle}>
+            Reservation
+          </h2>
+          <p>
+            Select any reservation item
+          </p>
+          <button className={styles.BtnOutline}>
+            Create Booking
+          </button>
+          <button className={styles.BtnOutline}>
+            Create Booking with Quote
+          </button>
+        </section>
+      </main>
     );
   }
 }
