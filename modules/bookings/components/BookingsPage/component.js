@@ -1,6 +1,8 @@
 import React from 'react';
 import { func, bool, arrayOf, shape, string } from 'prop-types';
 
+import BookingList from '../BookingList/component';
+
 import CalendarLogo from '../../../../static/calendar.svg';
 import styles from './styles.css';
 
@@ -23,6 +25,7 @@ export class Component extends React.PureComponent {
 
     return (
       <>
+        <BookingList list={this.props.data} />
         <h1 className={styles.Title}>Welcome!</h1>
         <CalendarLogo />
         {this.props.data.map(booking => booking.guestName)}

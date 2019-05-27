@@ -1,0 +1,38 @@
+.List {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ListItem {
+    position: relative;
+    padding: 10px 10px 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ListItemStatus {
+    position: absolute;
+    width: 46px;
+    text-align: center;
+}
+
+.ListItemBody {
+    margin-left: 46px;
+}
+
+.ListItemHeader {
+    display: flex;
+}
+
+.ListItemName {
+    font-weight: 700;
+    flex: 1;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ListItemDate {
+    flex: 0 0 auto;
+}

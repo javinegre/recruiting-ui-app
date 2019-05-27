@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,700|Josefin+Sans:700&display=swap');
+
 :root {
   background: #f0f0ed;
   box-sizing: border-box;
   font-family: -apple-system, 'BlinkMacSystemFont', '.SFNSDisplay-Regular',
     'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande',
     sans-serif;
+
+  --menu-bg: #e0e0e0;
+  --border-color: #b0b0b0;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 *,
