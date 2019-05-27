@@ -1,5 +1,6 @@
 import React from 'react';
 import { array } from 'prop-types';
+import classNames from 'classnames';
 
 import styles from './styles.css';
 
@@ -15,12 +16,54 @@ export default class Component extends React.PureComponent {
     return `${month}/${day}/${date.getFullYear()}`;
   }
 
+  formatTextDate(date) {
+    const month = [
+      'Jan', 'Feb', 'Mar',
+      'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep',
+      'Oct', 'Nov', 'Dec'][date.getMonth()];
+    return `${month} ${date.getDate()} ${date.getFullYear()}`;
+  }
+
+  getTotalNights(booking) {
+    // 86400000 = day in milliseconds
+    // for whatever reason nights can be negative, setting minimum to 1
+    return Math.max(
+      Math.floor((+booking.dateDeparture - +booking.dateArrival) / 86400000),
+      1
+    );
+  }
+
+  getStatusClassname(status) {
+    let classname = null;
+
+    switch (status) {
+      case 'Open':
+        classname = styles.StatusOpen;
+        break;
+      case 'Booked':
+        classname = styles.StatusBooked;
+        break;
+      case 'Unavailable':
+        classname = styles.StatusUnavailable;
+        break;
+      case 'Tentative':
+        classname = styles.StatusTentative;
+        break;
+      case 'Declined':
+        classname = styles.StatusDeclined;
+        break;
+    }
+
+    return classname;
+  }
+
   getListItem(item) {
     return (
       <li className={styles.ListItem} key={item.propertyId}>
 
         <div className={styles.ListItemStatus}>
-          <div className={styles.ListItemStatusIcon}>&#x25cf;</div>
+          <div className={classNames([styles.ListItemStatusIcon, this.getStatusClassname(item.status)])}>&#x25cf;</div>
           <div className={styles.ListItemStatusReplied}>
 
           </div>
@@ -42,7 +85,9 @@ export default class Component extends React.PureComponent {
           </div>
 
           <div className={styles.ListItemInfo}>
-            Info
+            {this.formatTextDate(item.dateArrival)},
+            Nights: {this.getTotalNights(item)},
+            Guests: {item.people}
           </div>
 
         </div>
